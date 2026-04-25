@@ -821,10 +821,22 @@ index 9459e8f28338..063e4a4eefdd 100644
  	.fec_is_active = enc2_fec_is_active,
  	.is_in_alt_mode = dcn201_link_encoder_is_in_alt_mode,
 diff --git a/drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_link_encoder.c b/drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_link_encoder.c
-index 13e14aad3daa..41eadc1dbc77 100644
+index 13e14aad3daa..edc4b9ccfea4 100644
 --- a/drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_link_encoder.c
 +++ b/drivers/gpu/drm/amd/display/dc/dio/dcn10/dcn10_link_encoder.c
-@@ -1065,6 +1065,11 @@ void dcn10_link_encoder_disable_output(
+@@ -986,6 +986,11 @@ void dcn10_link_encoder_enable_dp_output(
+ 	struct bp_transmitter_control cntl = { 0 };
+ 	enum bp_result result;
+ 
++#ifdef CONFIG_X86_PS5
++	/* Ignore this to prevent link training failure. */
++	return;
++#endif
++
+ 	/* Enable the PHY */
+ 
+ 	/* number_of_lanes is used for pixel clock adjust,
+@@ -1065,6 +1070,11 @@ void dcn10_link_encoder_disable_output(
  	struct bp_transmitter_control cntl = { 0 };
  	enum bp_result result;
  
