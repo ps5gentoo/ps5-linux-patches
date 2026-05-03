@@ -1,15 +1,36 @@
 # ps5-linux-patches
 
-## Compile
+## Compilation
 
 ```bash
+git clone https://github.com/ps5-linux/ps5-linux-patches
 git clone https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
 cd linux
 git checkout tags/v7.0.2
-git apply ~/ps5-linux-patches/linux.patch
-cp ~/ps5-linux-patches/.config .config
+git apply ../ps5-linux-patches/linux.patch
+cp ../ps5-linux-patches/.config .config
 make -j16
 ```
+
+## Installation
+
+In the same `linux` folder after compilation, do:
+
+```bash
+sudo make modules_install
+sudo make install
+```
+
+If you are updating Linux on your external USB SSD or you are directly booting into M.2 SSD, i.e. you use `-m2` in `cmdline.txt`, then you have to update the files on the FAT32 partition of your USB drive:
+
+```bash
+sudo mv /boot/efi/bzImage /boot/efi/bzImage.old
+sudo mv /boot/efi/initrd.img /boot/efi/initrd.img.old
+sudo cp /boot/vmlinuz-$(uname -r) /boot/efi/bzImage
+sudo cp /boot/initrd.img-$(uname -r) /boot/efi/initrd.img
+```
+
+If you are updating Linux on your M.2 SSD, but you do not directly boot into it, i.e. if you use `m2_exec.sh`, then you do need to do this step.
 
 ## TODO
 
