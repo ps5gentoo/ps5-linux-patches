@@ -1135,7 +1135,7 @@ index 000000000000..7acb030a4976
 +obj-y += spcie.o tpcie.o hdmi.o mp1.o
 diff --git a/drivers/ps5/hdmi.c b/drivers/ps5/hdmi.c
 new file mode 100644
-index 000000000000..8610cb9bf909
+index 000000000000..d6bb29c1c008
 --- /dev/null
 +++ b/drivers/ps5/hdmi.c
 @@ -0,0 +1,1063 @@
@@ -1838,7 +1838,7 @@ index 000000000000..8610cb9bf909
 +	i2c_write(0x700a, 0x02);
 +	i2c_write(0x705f, 0x80);
 +	i2c_end_block();
-+	i2c_delay(500);
++	i2c_delay(700);
 +	i2c_write(0x7a8b, 0x00);
 +	i2c_cmd_5_3(0x01);
 +	i2c_exec();
@@ -2177,7 +2177,7 @@ index 000000000000..8610cb9bf909
 +
 +	return false;
 +}
-+EXPORT_SYMBOL(isHdmiModeSupported);
++EXPORT_SYMBOL(isHdmiModeValid);
 +
 +const struct drm_edid *real_edid = NULL;
 +
