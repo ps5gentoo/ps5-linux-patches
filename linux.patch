@@ -1143,7 +1143,7 @@ index 000000000000..7acb030a4976
 +obj-y += spcie.o tpcie.o hdmi.o mp1.o
 diff --git a/drivers/ps5/hdmi.c b/drivers/ps5/hdmi.c
 new file mode 100644
-index 000000000000..a24459de573a
+index 000000000000..78ffc4f80a6d
 --- /dev/null
 +++ b/drivers/ps5/hdmi.c
 @@ -0,0 +1,1237 @@
@@ -2026,8 +2026,8 @@ index 000000000000..a24459de573a
 +
 +static void setHdmiVideoConfigFlava3(const struct drm_display_mode *mode)
 +{
-+	configParamFlava3Pre();
-+	configLinkTrainingFlava3();
++	// configParamFlava3Pre();
++	// configLinkTrainingFlava3();
 +	setHdmiBasicVideoConfigFlava3(mode);
 +	initHdmiPhyForFlava3_1st();
 +	initHdmiPhyForFlava3_2nd();
